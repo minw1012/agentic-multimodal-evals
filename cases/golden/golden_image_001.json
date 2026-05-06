@@ -1,0 +1,36 @@
+{
+  "case_id": "golden_image_001",
+  "prompt": "Create a clean square poster for a spring bakery campaign. Include \"SPRING SALE\" as large readable text. Use a playful style, no logos.",
+  "output_modality": "image",
+  "linked_rubric_id": "image_generation_general_v1",
+  "output": {
+    "type": "mock_image",
+    "asset_path": "mock://spring_bakery_poster.png",
+    "mock_evidence": {
+      "caption": "A clean square bakery poster with pastel pastries and large SPRING SALE text.",
+      "objects": ["pastries", "flowers", "poster"],
+      "style": "playful",
+      "artifacts": [],
+      "composition_quality": "good",
+      "prompt_alignment_signals": ["bakery campaign", "spring theme", "square poster"],
+      "ocr_text": "SPRING SALE",
+      "ocr_confidence": 0.98,
+      "text_legibility": "legible",
+      "safety_flags": [],
+      "risk_level": "low"
+    }
+  },
+  "metadata": {
+    "app_version": "mvp",
+    "model_version": "mock-image-model-v1",
+    "device": "simulator",
+    "latency_ms": 1200,
+    "prompt_version": "prompt-v1"
+  },
+  "eval_spec": {
+    "task_type": "image_generation",
+    "constraints": {
+      "aspect_ratio": "1:1"
+    }
+  }
+}

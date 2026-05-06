@@ -1,0 +1,41 @@
+{
+  "case_id": "regression_image_missing_text_001",
+  "prompt": "Create a clean square poster for a spring bakery campaign. Include \"SPRING SALE\" as large readable text. Use a playful style, no logos.",
+  "output_modality": "image",
+  "linked_rubric_id": "image_generation_general_v1",
+  "output": {
+    "type": "mock_image",
+    "asset_path": "mock://bad_spring_bakery_poster.png",
+    "mock_evidence": {
+      "caption": "A bakery poster with pastel pastries, but the headline text is distorted.",
+      "objects": ["pastries", "flowers", "poster"],
+      "style": "playful",
+      "artifacts": ["distorted typography"],
+      "composition_quality": "fair",
+      "prompt_alignment_signals": ["bakery campaign", "spring theme"],
+      "ocr_text": "SPR1NG S4LE",
+      "ocr_confidence": 0.72,
+      "text_legibility": "partially_legible",
+      "safety_flags": [],
+      "risk_level": "low"
+    }
+  },
+  "metadata": {
+    "app_version": "mvp",
+    "model_version": "mock-image-model-v1",
+    "device": "simulator",
+    "latency_ms": 1180,
+    "prompt_version": "prompt-v1"
+  },
+  "known_failure_info": {
+    "failure_type": "text_rendering",
+    "severity": "release_blocking",
+    "source": "historical_bug"
+  },
+  "eval_spec": {
+    "task_type": "image_generation",
+    "constraints": {
+      "aspect_ratio": "1:1"
+    }
+  }
+}
