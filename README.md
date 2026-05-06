@@ -2,19 +2,62 @@
 
 This is a Phase 1 implementation of an agent-based evaluation system, starting with image outputs.
 
-The first loop follows the product architecture:
+![Agent-based multimodal eval architecture](docs/assets/agent_eval_system.png)
 
-```text
-Eval Case
-  -> Intent Parser
-  -> Tool Planner
-  -> Mock Image Evidence Tools
-  -> Rule-Based Hard Checks
-  -> Evidence-Grounded Soft Scoring
-  -> JSON Report
-```
+The key idea is simple: do not let a judge model score by intuition alone. First convert the output into structured evidence, then evaluate that evidence against an explicit, portable rubric.
 
 The MVP intentionally uses mock image, OCR, and safety tools. The interfaces are shaped so real OCR, VLM, and safety tools can replace the mocks later.
+
+## Current Image MVP Flow
+
+```mermaid
+flowchart LR
+    A[Image Eval Case<br/>prompt + output + metadata] --> B[Intent Parser<br/>required text, style, negatives]
+    B --> C[Rubric Loader<br/>image_generation_general_v1]
+    C --> D[Tool Planner<br/>image analyzer + OCR + safety]
+    D --> E[Mock Evidence Extraction]
+    E --> F[Rule-Based Hard Checks<br/>safety, exact text, forbidden objects]
+    E --> G[Evidence-Grounded Soft Scoring<br/>alignment, quality, text, safety]
+    F --> H[Score Aggregator]
+    G --> H
+    H --> I[JSON Eval Report<br/>pass/fail, score, failures, recommendation]
+```
+
+## Target System Architecture
+
+```mermaid
+flowchart LR
+    A[Input / Eval Case<br/>prompt, output, metadata] --> B[Eval Agent Orchestration]
+    B --> B1[Intent Parser]
+    B --> B2[Rubric Generator<br/>human-approved templates]
+    B --> B3[Tool Planner]
+    B --> B4[Execution Orchestrator]
+
+    B4 --> C[Evidence Extraction]
+    C --> C1[Text Analyzer]
+    C --> C2[OCR]
+    C --> C3[Image / VLM Analyzer]
+    C --> C4[ASR]
+    C --> C5[Video Analyzer]
+    C --> C6[Safety Checker]
+    C --> C7[Structured Evidence]
+
+    C7 --> D[Judge / Scoring Layer]
+    D --> D1[Rule-Based Checks]
+    D --> D2[LLM Judge]
+    D --> D3[Eval Result]
+
+    D3 --> E[Result Storage & Analysis]
+    E --> E1[Report Store]
+    E --> E2[Dashboard]
+    E --> E3[Experiment Tracking]
+
+    E --> F[Continuous Improvement Loop]
+    F --> F1[Human Review / Calibration]
+    F --> F2[User Behavior Signals]
+    F --> F3[Update Dataset & Rubric]
+    F3 --> B
+```
 
 ## Run
 
