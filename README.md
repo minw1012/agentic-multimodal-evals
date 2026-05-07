@@ -2,7 +2,9 @@
 
 This is a demo implementation of an agent-based evaluation system, starting with image outputs.
 
-![Agent-based multimodal eval architecture](docs/assets/agent_eval_system.png)
+![Agent-based multimodal eval flow](docs/assets/agent_eval_flow.svg)
+
+For the original detailed architecture sketch, see [docs/assets/agent_eval_system.png](docs/assets/agent_eval_system.png).
 
 The key idea is simple: do not let a judge model score by intuition alone. First convert the output into structured evidence, then evaluate that evidence against an explicit, portable rubric.
 

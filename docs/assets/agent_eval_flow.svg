@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
+  <title id="title">Agent-Based Multimodal Evaluation Flow</title>
+  <desc id="desc">A clear vector diagram showing eval case input, agent orchestration, evidence extraction, scoring, reporting, and continuous improvement.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fbff; }
+      .title { font: 700 38px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .subtitle { font: 18px Arial, Helvetica, sans-serif; fill: #475569; }
+      .lane-title { font: 700 21px Arial, Helvetica, sans-serif; fill: #ffffff; }
+      .card-title { font: 700 18px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .card-text { font: 15px Arial, Helvetica, sans-serif; fill: #334155; }
+      .note-title { font: 700 20px Arial, Helvetica, sans-serif; fill: #7c2d12; }
+      .note-text { font: 16px Arial, Helvetica, sans-serif; fill: #7c2d12; }
+      .small { font: 13px Arial, Helvetica, sans-serif; fill: #475569; }
+      .lane { fill: #ffffff; stroke: #bfdbfe; stroke-width: 2; rx: 14; }
+      .header-blue { fill: #2563eb; }
+      .header-green { fill: #16a34a; }
+      .header-purple { fill: #7c3aed; }
+      .card { fill: #ffffff; stroke: #93c5fd; stroke-width: 1.6; rx: 10; }
+      .card-green { fill: #ffffff; stroke: #86efac; stroke-width: 1.6; rx: 10; }
+      .card-purple { fill: #ffffff; stroke: #c4b5fd; stroke-width: 1.6; rx: 10; }
+      .note { fill: #fff7ed; stroke: #fdba74; stroke-width: 1.6; rx: 12; }
+      .arrow { stroke: #2563eb; stroke-width: 4; fill: none; marker-end: url(#arrowhead); }
+      .arrow-green { stroke: #16a34a; stroke-width: 4; fill: none; marker-end: url(#arrowhead-green); }
+      .loop { stroke: #7c3aed; stroke-width: 3; fill: none; stroke-dasharray: 9 7; marker-end: url(#arrowhead-purple); }
+      .icon { font: 700 26px Arial, Helvetica, sans-serif; fill: #2563eb; }
+      .icon-green { font: 700 26px Arial, Helvetica, sans-serif; fill: #16a34a; }
+      .icon-purple { font: 700 26px Arial, Helvetica, sans-serif; fill: #7c3aed; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrowhead-purple" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1600" height="720"/>
+  <text x="800" y="50" text-anchor="middle" class="title">Agent-Based Multimodal Evaluation Demo</text>
+  <text x="800" y="82" text-anchor="middle" class="subtitle">Extract evidence first, then score against an explicit rubric.</text>
+
+  <g transform="translate(38 120)">
+    <rect class="lane" x="0" y="0" width="250" height="430"/>
+    <rect class="header-blue" x="0" y="0" width="250" height="52" rx="14"/>
+    <text x="125" y="34" text-anchor="middle" class="lane-title">1. Eval Case</text>
+    <rect class="card" x="18" y="78" width="214" height="82"/>
+    <text x="36" y="112" class="icon">IN</text>
+    <text x="82" y="107" class="card-title">Prompt / Task</text>
+    <text x="82" y="132" class="card-text">User intent and constraints</text>
+    <rect class="card" x="18" y="182" width="214" height="96"/>
+    <text x="36" y="222" class="icon">IMG</text>
+    <text x="92" y="214" class="card-title">Model Output</text>
+    <text x="92" y="240" class="card-text">Image now; text/audio/video later</text>
+    <rect class="card" x="18" y="300" width="214" height="82"/>
+    <text x="36" y="334" class="icon">MD</text>
+    <text x="82" y="329" class="card-title">Metadata</text>
+    <text x="82" y="354" class="card-text">Dataset, model, version</text>
+  </g>
+
+  <g transform="translate(330 120)">
+    <rect class="lane" x="0" y="0" width="270" height="430"/>
+    <rect class="header-blue" x="0" y="0" width="270" height="52" rx="14"/>
+    <text x="135" y="34" text-anchor="middle" class="lane-title">2. Agent Orchestration</text>
+    <rect class="card" x="22" y="76" width="226" height="74"/>
+    <text x="42" y="108" class="icon">A</text>
+    <text x="84" y="103" class="card-title">Intent Parser</text>
+    <text x="84" y="128" class="card-text">Extract exact text, negatives</text>
+    <rect class="card" x="22" y="168" width="226" height="74"/>
+    <text x="42" y="200" class="icon">R</text>
+    <text x="84" y="195" class="card-title">Rubric Authoring</text>
+    <text x="84" y="220" class="card-text">Generate or load rubric draft</text>
+    <rect class="card" x="22" y="260" width="226" height="74"/>
+    <text x="42" y="292" class="icon">T</text>
+    <text x="84" y="287" class="card-title">Tool Planner</text>
+    <text x="84" y="312" class="card-text">Choose OCR, image, safety</text>
+    <rect class="card" x="22" y="352" width="226" height="58"/>
+    <text x="42" y="388" class="icon">X</text>
+    <text x="84" y="383" class="card-title">Executor</text>
+  </g>
+
+  <g transform="translate(642 120)">
+    <rect class="lane" x="0" y="0" width="310" height="430"/>
+    <rect class="header-blue" x="0" y="0" width="310" height="52" rx="14"/>
+    <text x="155" y="34" text-anchor="middle" class="lane-title">3. Evidence Extraction</text>
+    <rect class="card" x="22" y="76" width="126" height="78"/>
+    <text x="44" y="110" class="icon">IA</text>
+    <text x="78" y="104" class="card-title">Image</text>
+    <text x="78" y="128" class="card-text">caption, objects</text>
+    <rect class="card" x="164" y="76" width="124" height="78"/>
+    <text x="184" y="110" class="icon">OCR</text>
+    <text x="236" y="104" class="card-title">Text</text>
+    <text x="184" y="128" class="card-text">rendered words</text>
+    <rect class="card" x="22" y="176" width="126" height="78"/>
+    <text x="44" y="210" class="icon">SF</text>
+    <text x="78" y="204" class="card-title">Safety</text>
+    <text x="78" y="228" class="card-text">flags, risk</text>
+    <rect class="card" x="164" y="176" width="124" height="78"/>
+    <text x="184" y="210" class="icon">DS</text>
+    <text x="226" y="204" class="card-title">Dataset</text>
+    <text x="184" y="228" class="card-text">source metadata</text>
+    <rect class="card" x="22" y="282" width="266" height="104"/>
+    <text x="44" y="324" class="icon">JSON</text>
+    <text x="106" y="314" class="card-title">Structured Evidence</text>
+    <text x="106" y="342" class="card-text">Facts the scorer can cite</text>
+    <text x="106" y="366" class="small">No intuition-only judging</text>
+  </g>
+
+  <g transform="translate(994 120)">
+    <rect class="lane" x="0" y="0" width="276" height="430" stroke="#86efac"/>
+    <rect class="header-green" x="0" y="0" width="276" height="52" rx="14"/>
+    <text x="138" y="34" text-anchor="middle" class="lane-title">4. Scoring Layer</text>
+    <rect class="card-green" x="22" y="78" width="232" height="96"/>
+    <text x="44" y="122" class="icon-green">OK</text>
+    <text x="94" y="112" class="card-title">Hard Checks</text>
+    <text x="94" y="138" class="card-text">safety, exact text, no logos</text>
+    <rect class="card-green" x="22" y="206" width="232" height="104"/>
+    <text x="44" y="252" class="icon-green">5</text>
+    <text x="94" y="238" class="card-title">Soft Scores</text>
+    <text x="94" y="264" class="card-text">alignment, quality, acceptability</text>
+    <rect class="card-green" x="22" y="340" width="232" height="70"/>
+    <text x="44" y="382" class="icon-green">R</text>
+    <text x="94" y="374" class="card-title">Pass / Fail Result</text>
+  </g>
+
+  <g transform="translate(1312 120)">
+    <rect class="lane" x="0" y="0" width="250" height="430"/>
+    <rect class="header-blue" x="0" y="0" width="250" height="52" rx="14"/>
+    <text x="125" y="34" text-anchor="middle" class="lane-title">5. Reports</text>
+    <rect class="card" x="18" y="84" width="214" height="92"/>
+    <text x="40" y="126" class="icon">DB</text>
+    <text x="92" y="116" class="card-title">Report Store</text>
+    <text x="92" y="142" class="card-text">JSON, traces, evidence</text>
+    <rect class="card" x="18" y="208" width="214" height="92"/>
+    <text x="40" y="250" class="icon">CH</text>
+    <text x="92" y="240" class="card-title">Analysis</text>
+    <text x="92" y="266" class="card-text">compare versions and slices</text>
+    <rect class="card" x="18" y="332" width="214" height="64"/>
+    <text x="40" y="370" class="icon">EX</text>
+    <text x="92" y="364" class="card-title">Experiments</text>
+  </g>
+
+  <path class="arrow" d="M288 335 H325"/>
+  <path class="arrow" d="M600 335 H637"/>
+  <path class="arrow" d="M952 335 H989"/>
+  <path class="arrow-green" d="M1270 335 H1307"/>
+
+  <g transform="translate(330 595)">
+    <rect class="card-purple" x="0" y="0" width="940" height="80"/>
+    <text x="26" y="46" class="icon-purple">LOOP</text>
+    <text x="104" y="32" class="card-title">Continuous Improvement</text>
+    <text x="104" y="58" class="card-text">Human review, user behavior signals, regression mining, rubric updates, threshold tuning</text>
+  </g>
+  <path class="loop" d="M1240 595 C1240 570 1240 555 1240 550"/>
+  <path class="loop" d="M360 595 C245 595 160 565 160 552"/>
+
+  <g transform="translate(1090 585)">
+    <rect class="note" x="0" y="0" width="470" height="104"/>
+    <text x="24" y="36" class="note-title">Key principle</text>
+    <text x="24" y="64" class="note-text">Rubrics are explicit, editable, portable, versioned, and human-reviewable.</text>
+    <text x="24" y="88" class="note-text">Evidence tools are replaceable as the system matures.</text>
+  </g>
+</svg>
