@@ -29,32 +29,20 @@ The important idea is: **rubrics are explicit configuration, and judges score fr
 
 ## What Works Now
 
-```text
-Rubric authoring
-  natural-language requirements
-  -> draft rubric config
-  -> human review/edit
-```
+| You can... | What happens |
+|---|---|
+| Generate a rubric from quality requirements | The system creates a draft rubric with hard constraints, soft score dimensions, weights, and thresholds. |
+| Run an image eval case | The runner parses the prompt, plans tools, extracts evidence, checks constraints, scores quality, and writes a JSON report. |
+| Evaluate a public dataset sample | A DiffusionDB text-to-image sample is converted into the same eval-case format and run through the same pipeline. |
+| Inspect why a case passed or failed | The report includes hard-check results, soft scores, failure modes, evidence, rubric version, and tool versions. |
+
+Current tool implementations are mocks, but they sit behind replaceable interfaces:
 
 ```text
-Image eval execution
-  eval case
-  -> intent parser
-  -> tool planner
-  -> mock image analyzer / OCR / safety checker
-  -> hard checks + weighted soft scores
-  -> JSON report
+mock OCR / mock image analyzer / mock safety checker
+  -> same evidence schema
+  -> replace later with real OCR, VLM, safety, audio, or video tools
 ```
-
-```text
-Public dataset path
-  DiffusionDB sample
-  -> eval case JSON
-  -> same eval runner
-  -> report JSON
-```
-
-This is still a demo: OCR, image analysis, and safety checks are mocked behind stable interfaces. The point is to make the full agentic eval loop work before replacing mocks with real tools.
 
 ## Quick Start
 
@@ -130,6 +118,35 @@ structured evidence
 tool versions
 rubric version
 metadata
+```
+
+## Make It Discoverable
+
+To help more people find the repo:
+
+```text
+1. Add a short GitHub repo description:
+   Agent-based multimodal eval demo with rubrics, evidence extraction, and traceable reports.
+
+2. Add GitHub topics:
+   llm-evaluation
+   multimodal-evaluation
+   agentic-evals
+   evals
+   rubric
+   vlm
+   ocr
+   diffusiondb
+   python
+
+3. Keep the README searchable:
+   mention LLM eval, multimodal eval, rubric generation, evidence extraction, JSON reports.
+
+4. Share a concrete demo:
+   "Run one DiffusionDB image eval and inspect the report."
+
+5. Add a good social preview image:
+   use docs/assets/schema.png as the repository social preview.
 ```
 
 ## Test
