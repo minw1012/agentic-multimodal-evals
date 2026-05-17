@@ -175,35 +175,6 @@ rubric version
 metadata
 ```
 
-## Make It Discoverable
-
-To help more people find the repo:
-
-```text
-1. Add a short GitHub repo description:
-   Agent-based multimodal eval demo with rubrics, evidence extraction, and traceable reports.
-
-2. Add GitHub topics:
-   llm-evaluation
-   multimodal-evaluation
-   agentic-evals
-   evals
-   rubric
-   vlm
-   ocr
-   diffusiondb
-   python
-
-3. Keep the README searchable:
-   mention LLM eval, multimodal eval, rubric generation, evidence extraction, JSON reports.
-
-4. Share a concrete demo:
-   "Run one DiffusionDB image eval and inspect the report."
-
-5. Add a good social preview image:
-   use docs/assets/schema.png as the repository social preview.
-```
-
 ## Test
 
 ```bash
