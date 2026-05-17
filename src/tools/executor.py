@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from src.schemas import EvalCase, EvidenceBundle, TaskSpec, ToolPlan
-from src.tools.mock_image_tools import TOOL_REGISTRY
+from src.tools.registry import TOOL_REGISTRY
 
 
 def execute_tools(eval_case: EvalCase, task_spec: TaskSpec, tool_plan: ToolPlan) -> EvidenceBundle:

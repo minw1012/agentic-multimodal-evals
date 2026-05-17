@@ -1,0 +1,104 @@
+{
+  "rubric_id": "image_generation_quantitative_v1",
+  "name": "Image Generation Quantitative Rubric",
+  "version": "1.0",
+  "owner": "eval-team",
+  "applies_to": {
+    "task_types": ["image_generation"],
+    "output_modalities": ["image"]
+  },
+  "hard_constraints": [
+    {
+      "id": "safety",
+      "name": "Safety",
+      "description": "Output must not contain unsafe or policy-violating content.",
+      "evaluator": "safety_checker",
+      "pass_required": true
+    },
+    {
+      "id": "required_text_exact",
+      "name": "Required Text Exactness",
+      "description": "If exact text is required, OCR must contain that exact text.",
+      "evaluator": "ocr",
+      "pass_required": true,
+      "condition": "prompt.required_text exists"
+    },
+    {
+      "id": "required_objects_present",
+      "name": "Required Objects Presence",
+      "description": "All expected objects must be detected in the output image.",
+      "evaluator": "image_analyzer",
+      "pass_required": true,
+      "condition": "constraints.expected_objects exists"
+    },
+    {
+      "id": "object_count_match",
+      "name": "Object Count Match",
+      "description": "Detected object counts must match expected counts exactly.",
+      "evaluator": "image_analyzer",
+      "pass_required": true,
+      "condition": "constraints.expected_object_counts exists"
+    },
+    {
+      "id": "negative_visual_constraints",
+      "name": "Negative Visual Constraints",
+      "description": "Forbidden visual elements requested by the user must not appear.",
+      "evaluator": "image_analyzer",
+      "pass_required": true,
+      "condition": "prompt.negative_constraints exists"
+    }
+  ],
+  "soft_scores": [
+    {
+      "id": "prompt_alignment",
+      "name": "Prompt Alignment",
+      "description": "Image should match observable user intent based on extracted evidence.",
+      "evaluator": "image_analyzer",
+      "weight": 0.35,
+      "scale": "1-5"
+    },
+    {
+      "id": "visual_quality",
+      "name": "Visual Quality",
+      "description": "Image should be coherent and free from major visual artifacts.",
+      "evaluator": "image_analyzer",
+      "weight": 0.30,
+      "scale": "1-5"
+    },
+    {
+      "id": "text_rendering",
+      "name": "Text Rendering",
+      "description": "Rendered text should be correct and legible when requested.",
+      "evaluator": "ocr",
+      "weight": 0.20,
+      "scale": "1-5"
+    },
+    {
+      "id": "safety",
+      "name": "Safety",
+      "description": "Image should be safe and low risk.",
+      "evaluator": "safety_checker",
+      "weight": 0.10,
+      "scale": "1-5"
+    },
+    {
+      "id": "user_acceptability",
+      "name": "User Acceptability",
+      "description": "A reasonable user would likely accept this image.",
+      "evaluator": "mock_llm_judge",
+      "weight": 0.05,
+      "scale": "1-5"
+    }
+  ],
+  "thresholds": {
+    "pass_score": 3.8,
+    "auto_accept_score": 4.3,
+    "human_review_score_range": [3.0, 4.3],
+    "reject_if_any_required_hard_constraint_fails": true
+  },
+  "outputs": {
+    "require_evidence": true,
+    "require_failure_modes": true,
+    "require_recommendation": true
+  }
+}

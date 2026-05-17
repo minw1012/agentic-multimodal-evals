@@ -1,4 +1,4 @@
-# Agent-Based Multimodal Eval Demo
+# Rubric-Driven Multimodal Eval Agent for Image Generation
 
 This repo is a small, runnable demo of an agent-based evaluation system for multimodal model outputs. It starts with image generation, but the architecture is designed to extend to text, audio, and video.
 
@@ -44,6 +44,19 @@ mock OCR / mock image analyzer / mock safety checker
   -> replace later with real OCR, VLM, safety, audio, or video tools
 ```
 
+Intent parsing now follows:
+
+```text
+LLM structured parse (optional) -> schema normalization -> regex fallback
+```
+
+You can control parser behavior:
+
+```bash
+export EVAL_INTENT_PARSER_BACKEND=regex   # force regex-only mode
+export EVAL_INTENT_PARSER_BACKEND=openai  # call OpenAI Responses API (requires OPENAI_API_KEY)
+```
+
 ## Quick Start
 
 Run the built-in image case:
@@ -52,6 +65,10 @@ Run the built-in image case:
 python3 runner.py \
   --case cases/golden/golden_image_001.json \
   --rubric configs/rubrics/image_generation_general_v1.yaml
+
+python3 runner.py \
+  --case cases/golden/golden_image_001.json \
+  --rubric configs/rubrics/image_generation_quantitative_v1.yaml
 ```
 
 Run a public DiffusionDB sample:
